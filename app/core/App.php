@@ -24,11 +24,14 @@ class App{
 				unset($url[1]);
 			}
 		}
-
+		
 		//parameter
 		if( !empty($url) ){
-			var_dump($url);
+			$this->params = array_values($url);
 		}
+
+		// jalankan controller dan method, serta kirimkan parameter kalo ada
+		call_user_func_array([$this->controller, $this->method], $this->params);
 	}
 
 	public function parseURL(){
